@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточка прогресса сундуков Genshin Impact: Разлом, Энканомия, Долина Чэньюй</title>
+<meta name="description" content="Сделайте картинку с прогрессом по сундукам Genshin Impact: Разлом 248, Энканомия 185, Долина Чэньюй 333 или свой регион. Скачайте и покажите друзьям. Бесплатно, без регистрации.">
+<meta property="og:title" content="Карточка прогресса сундуков Genshin Impact">
+<meta property="og:description" content="Сколько сундуков открыто и сколько осталось. Картинка для друзей за десять секунд.">
+<meta property="og:image" content="https://kitron4ik.github.io/sunduchnik-progress/og.jpg">
+<meta property="og:url" content="https://kitron4ik.github.io/sunduchnik-progress/">
+<link rel="canonical" href="https://kitron4ik.github.io/sunduchnik-progress/">
+<meta name="theme-color" content="#14184a">
+<style>
+@font-face{font-family:"Cinzel";src:url("fonts/Cinzel.ttf") format("truetype");font-weight:400 900;font-display:swap}
+:root{--navy:#262c4a;--navy2:#14184a;--cream:#ece5d8;--gold:#e8be6e;--gold2:#c9923a;--mut:#b9b4c8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--cream);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ background:radial-gradient(900px 520px at 80% -10%,rgba(255,224,160,.25),transparent 60%),linear-gradient(180deg,#14184a 0%,#2c2a63 55%,#5b4a78 100%);background-attachment:fixed}
+.wrap{max-width:980px;margin:0 auto;padding:22px 16px 60px}
+h1,h2,.num{font-family:Georgia,"Times New Roman",serif;font-weight:700}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.15;margin:8px 0 10px;color:var(--gold)}
+h2{font-size:22px;color:var(--gold);margin:32px 0 10px}
+.lead{color:var(--mut);margin:0 0 18px}
+.layout{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:20px;align-items:start}
+@media(max-width:760px){.layout{grid-template-columns:1fr}}
+.panel{background:rgba(16,20,56,.72);border:1px solid rgba(232,190,110,.45);border-radius:16px;padding:16px}
+label{display:block;font-size:14px;color:var(--mut);margin:12px 0 5px}
+label:first-child{margin-top:0}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:#0f1233;color:var(--cream);font-size:17px;font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--gold)}
+.hidden{display:none}
+.hint{font-size:13px;color:var(--mut);margin:5px 0 0}
+.preview{display:flex;flex-direction:column;gap:12px;align-items:center}
+canvas{width:100%;max-width:420px;height:auto;border-radius:14px;border:2px solid var(--gold);box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn{padding:12px 20px;border-radius:12px;border:2px solid var(--navy);background:var(--gold);color:var(--navy2);font:700 16px Georgia,serif;cursor:pointer;text-decoration:none;box-shadow:3px 3px 0 var(--navy)}
+.btn.alt{background:transparent;color:var(--cream);border-color:rgba(232,190,110,.6);box-shadow:none}
+.msg{min-height:20px;font-size:14px;color:var(--gold)}
+details{background:rgba(16,20,56,.72);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 16px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--mut)}
+.src{font-size:13px;color:var(--mut);margin-top:26px}
+a{color:var(--gold)}
+.cta{margin-top:20px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Карточка прогресса сундуков Genshin Impact</h1>
+  <p class="lead">Выберите регион, введите, сколько сундуков открыто, и получите картинку, которой можно поделиться. Работает в браузере, ничего не отправляется на сервер.</p>
+
+  <div class="layout">
+    <section class="panel">
+      <label for="region">Регион</label>
+      <select id="region">
+        <option value="Разлом|248">Разлом (248)</option>
+        <option value="Энканомия|185">Энканомия (185)</option>
+        <option value="Долина Чэньюй|333">Долина Чэньюй (333)</option>
+        <option value="custom">Другой регион</option>
+      </select>
+      <div id="customBox" class="hidden">
+        <label for="cname">Название региона</label>
+        <input id="cname" maxlength="26" placeholder="Например, Мондштадт">
+        <label for="ctarget">Сколько сундуков всего</label>
+        <input id="ctarget" type="number" inputmode="numeric" min="1" max="3000" value="500">
+      </div>
+      <label for="opened">Открыто сундуков</label>
+      <input id="opened" type="number" inputmode="numeric" min="0" value="247">
+      <p class="hint">Число из достижения региона: «открыть сундуки в этой области».</p>
+      <label for="nick">Имя или ник (необязательно)</label>
+      <input id="nick" maxlength="22" placeholder="Путешественник">
+      <p class="hint">Цели по регионам взяты из вики Genshin Impact. Если у вас в игре другое число, выберите «Другой регион».</p>
+    </section>
+    <section class="preview">
+      <canvas id="cv" width="1080" height="1350" aria-label="Карточка прогресса"></canvas>
+      <div class="btns">
+        <button class="btn" id="dl">Скачать PNG</button>
+        <button class="btn alt" id="share">Поделиться</button>
+        <button class="btn alt" id="copy">Скопировать текст</button>
+      </div>
+      <div class="msg" id="msg" role="status"></div>
+    </section>
+  </div>
+
+  <p class="cta"><a class="btn" href="https://max.ru/channel_sunduchnik_genshin" rel="noopener">Канал «Сундучник» в MAX</a></p>
+  <p class="hint">Чек-листы по сундукам, дни рождения героев, голосования по баннерам.</p>
+
+  <h2>Как узнать своё число</h2>
+  <details open><summary>Где посмотреть, сколько сундуков открыто</summary><p>Откройте достижения региона и найдите то, где нужно открыть сундуки в этой области. Число в нём и есть ваш реальный счётчик. Процент исследования региона – другая вещь: 100% не значит, что открыто всё.</p></details>
+  <details><summary>Почему не хватает одного сундука при 100% исследования?</summary><p>Игра показывает только общее число и не говорит, какой именно сундук пропущен. Для Разлома у карт расхождение: на независимой карте Kongying Tavern 248 сундуков, на карте HoYoLAB 247 точек. Подробнее в канале.</p></details>
+  <p class="src">Цели по регионам: <a href="https://genshin-impact.fandom.com/wiki/Chest" rel="noopener">вики Genshin Impact</a>. Genshin Impact принадлежит HoYoverse; сайт неофициальный и не связан с издателем.</p>
+</main>
+
+<script>
+const W = 1080, H = 1350;
+const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+const $ = (id) => document.getElementById(id);
+const CHANNEL = "max.ru/channel_sunduchnik_genshin";
+const GOLD = ["#fff8de", "#e0a84c"], NAVY = "#262c4a", CREAM = "#ece5d8";
+const chest = new Image(); chest.src = "chest.png";
+
+function rng(seed) { let s = seed; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+function plural(n, a, b, c) { const m = n % 100, d = n % 10; return m > 10 && m < 20 ? c : d > 1 && d < 5 ? b : d === 1 ? a : c; }
+
+function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); }
+function diamond(cx, cy, r, fill, stroke) {
+  ctx.beginPath(); ctx.moveTo(cx, cy - r); ctx.lineTo(cx + r * .62, cy); ctx.lineTo(cx, cy + r); ctx.lineTo(cx - r * .62, cy); ctx.closePath();
+  ctx.fillStyle = fill; ctx.fill(); if (stroke) { ctx.lineWidth = 3; ctx.strokeStyle = stroke; ctx.stroke(); }
+}
+function star(x, y, r, a) {
+  ctx.fillStyle = `rgba(255,244,210,${a})`; ctx.beginPath();
+  ctx.moveTo(x, y - r * 2.2); ctx.lineTo(x + r * .5, y - r * .5); ctx.lineTo(x + r * 2.2, y); ctx.lineTo(x + r * .5, y + r * .5);
+  ctx.lineTo(x, y + r * 2.2); ctx.lineTo(x - r * .5, y + r * .5); ctx.lineTo(x - r * 2.2, y); ctx.lineTo(x - r * .5, y - r * .5); ctx.closePath(); ctx.fill();
+}
+function glow(x, y, r, rgb, a) {
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0, `rgba(${rgb},${a})`); g.addColorStop(1, `rgba(${rgb},0)`);
+  ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2);
+}
+function goldText(text, x, y, font, strokeW, align = "center") {
+  ctx.font = font; ctx.textAlign = align; ctx.textBaseline = "alphabetic"; ctx.lineJoin = "round";
+  const size = parseInt(font.match(/(\d+)px/)[1], 10);
+  const g = ctx.createLinearGradient(0, y - size, 0, y);
+  g.addColorStop(0, GOLD[0]); g.addColorStop(1, GOLD[1]);
+  ctx.lineWidth = strokeW; ctx.strokeStyle = NAVY; ctx.strokeText(text, x + 3, y + 5);
+  ctx.strokeText(text, x, y); ctx.fillStyle = g; ctx.fillText(text, x, y);
+}
+function wrap(text, font, maxW) {
+  ctx.font = font; const words = text.split(/\s+/), lines = []; let cur = "";
+  for (const w of words) { const t = (cur ? cur + " " : "") + w; if (ctx.measureText(t).width <= maxW || !cur) cur = t; else { lines.push(cur); cur = w; } }
+  if (cur) lines.push(cur); return lines;
+}
+
+function state() {
+  let name, target;
+  if ($("region").value === "custom") { name = ($("cname").value.trim() || "Мой регион"); target = Math.max(1, parseInt($("ctarget").value, 10) || 1); }
+  else { [name, target] = $("region").value.split("|"); target = +target; }
+  let opened = Math.max(0, parseInt($("opened").value, 10) || 0);
+  opened = Math.min(opened, target);
+  return { name, target, opened, nick: $("nick").value.trim() };
+}
+
+function render() {
+  const { name, target, opened, nick } = state();
+  const pct = opened / target, left = target - opened, done = left === 0;
+  // фон: сумерки
+  let g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#14184a"); g.addColorStop(.55, "#46407a"); g.addColorStop(1, "#d69c8c");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  glow(W / 2, 560, 620, "255,224,160", .55);
+  glow(W / 2, 1300, 700, "255,214,200", .22);
+  const r = rng(7);
+  // облака
+  for (let i = 0; i < 14; i++) glow(r() * W, 1120 + r() * 220, 180 + r() * 200, "255,236,214", .18);
+  // затемнение низа, чтобы подписи читались
+  const dg = ctx.createLinearGradient(0, H * .62, 0, H);
+  dg.addColorStop(0, "rgba(20,24,74,0)"); dg.addColorStop(1, "rgba(20,24,74,.82)");
+  ctx.fillStyle = dg; ctx.fillRect(0, H * .62, W, H * .38);
+  // созвездие над сундуком
+  const pts = [[150, 250], [260, 170], [420, 210], [640, 150], [800, 205], [930, 160], [960, 330]];
+  ctx.strokeStyle = "rgba(232,190,110,.65)"; ctx.lineWidth = 2; ctx.beginPath();
+  pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); ctx.stroke();
+  pts.forEach((p, i) => { glow(p[0], p[1], 26, "255,240,200", .6); ctx.fillStyle = "#fff8e0"; ctx.beginPath(); ctx.arc(p[0], p[1], 5, 0, 7); ctx.fill(); if (i % 2 === 0) star(p[0], p[1], 8, .95); });
+  for (let i = 0; i < 40; i++) star(r() * W, r() * H * .8, 1.5 + r() * 3, .35 + r() * .5);
+  // рамка
+  rr(22, 22, W - 44, H - 44, 28); ctx.lineWidth = 6; ctx.strokeStyle = "#e8be6e"; ctx.stroke();
+  rr(40, 40, W - 80, H - 80, 20); ctx.lineWidth = 1.5; ctx.strokeStyle = "rgba(232,190,110,.5)"; ctx.stroke();
+  [[W / 2, 22], [W / 2, H - 22], [22, H / 2], [W - 22, H / 2]].forEach(([x, y]) => diamond(x, y, 17, CREAM, "#e8be6e"));
+  // шапка-плашка
+  ctx.font = "700 30px Georgia, serif"; const label = "СУНДУЧНИК  |  GENSHIN"; const lw = ctx.measureText(label).width + 90;
+  rr(W / 2 - lw / 2, 78, lw, 62, 12); ctx.fillStyle = CREAM; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = "#e8be6e"; ctx.stroke();
+  diamond(W / 2 - lw / 2 + 28, 109, 11, "#e8be6e", NAVY); diamond(W / 2 + lw / 2 - 28, 109, 11, "#e8be6e", NAVY);
+  ctx.fillStyle = NAVY; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(label, W / 2, 111);
+  // название региона
+  let size = 96, lines;
+  do { lines = wrap(name, `700 ${size}px Georgia, serif`, W - 200); size -= 6; } while (lines.length > 2 && size > 52);
+  size += 6; const lh = size * 1.1; let y = 250;
+  lines.forEach((ln, i) => goldText(ln, W / 2, y + i * lh, `700 ${size}px Georgia, serif`, 10));
+  const afterTitle = y + (lines.length - 1) * lh;
+  // сундук
+  const cw = 560, ch = chest.complete && chest.naturalWidth ? cw * chest.naturalHeight / chest.naturalWidth : 490;
+  const cy = Math.max(afterTitle + 50, 340);
+  glow(W / 2, cy + ch / 2, 420, done ? "255,230,140" : "255,214,120", done ? .85 : .55);
+  if (done) for (let i = 0; i < 14; i++) star(W / 2 + (r() - .5) * 700, cy + r() * ch, 5 + r() * 8, .9);
+  if (chest.complete && chest.naturalWidth) ctx.drawImage(chest, W / 2 - cw / 2, cy, cw, ch);
+  // число
+  const ny = Math.max(cy + ch + 150, 940);
+  goldText(`${opened} / ${target}`, W / 2, ny, "800 150px Cinzel, Georgia, serif", 12);
+  // полоса прогресса
+  const bx = 130, bw = W - 260, by = ny + 40, bh = 52;
+  rr(bx, by, bw, bh, 26); ctx.fillStyle = "rgba(20,24,74,.75)"; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = "#e8be6e"; ctx.stroke();
+  if (pct > 0) { const fw = Math.max(bh, bw * pct); const gg = ctx.createLinearGradient(bx, 0, bx + bw, 0); gg.addColorStop(0, "#f4d58b"); gg.addColorStop(1, "#d79a3c"); rr(bx + 4, by + 4, fw - 8, bh - 8, 22); ctx.fillStyle = gg; ctx.fill(); }
+  ctx.font = "700 28px Georgia, serif"; ctx.fillStyle = pct > .55 ? NAVY : CREAM; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  ctx.fillText(`${Math.floor(pct * 100)}%`, bx + bw / 2, by + bh / 2 + 1);
+  // подпись
+  ctx.textBaseline = "alphabetic";
+  ctx.font = "700 46px Georgia, serif"; ctx.fillStyle = done ? "#f6dc8e" : CREAM; ctx.textAlign = "center";
+  ctx.fillText(done ? "Все сундуки открыты" : `Осталось найти: ${left} ${plural(left, "сундук", "сундука", "сундуков")}`, W / 2, by + bh + 74);
+  if (nick) { ctx.font = "30px Georgia, serif"; ctx.fillStyle = "rgba(236,229,216,.85)"; ctx.fillText(`Путешественник: ${nick}`, W / 2, by + bh + 124); }
+  ctx.font = "26px Georgia, serif"; ctx.fillStyle = "rgba(236,229,216,.9)"; ctx.fillText(CHANNEL, W / 2, H - 62);
+}
+
+function text() { const s = state(); return `${s.name}: открыто ${s.opened} из ${s.target} сундуков` + (s.opened === s.target ? ". Всё!" : `, осталось ${s.target - s.opened}.`) + `\nСчитаю в канале ${CHANNEL}`; }
+const msg = (t) => { $("msg").textContent = t; setTimeout(() => ($("msg").textContent = ""), 2800); };
+const blob = () => new Promise((res) => cv.toBlob(res, "image/png"));
+
+$("dl").onclick = async () => { const a = document.createElement("a"); a.download = "sunduchnik-progress.png"; a.href = URL.createObjectURL(await blob()); a.click(); msg("Картинка скачана"); };
+$("share").onclick = async () => {
+  try {
+    const file = new File([await blob()], "progress.png", { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: text() }); }
+    else { await navigator.clipboard.writeText(text()); msg("Поделиться файлом нельзя в этом браузере: скачайте картинку, текст скопирован"); }
+  } catch (e) { if (e && e.name !== "AbortError") msg("Не получилось поделиться, скачайте картинку"); }
+};
+$("copy").onclick = async () => { try { await navigator.clipboard.writeText(text()); msg("Текст скопирован"); } catch (e) { msg("Не удалось скопировать"); } };
+
+$("region").onchange = () => { $("customBox").classList.toggle("hidden", $("region").value !== "custom"); render(); };
+["opened", "nick", "cname", "ctarget"].forEach((id) => $(id).addEventListener("input", render));
+chest.onload = render;
+Promise.all([document.fonts.load("800 150px Cinzel"), document.fonts.ready]).then(render, render);
+render();
+</script>
+</body>
+</html>
