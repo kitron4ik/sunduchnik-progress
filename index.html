@@ -179,13 +179,13 @@ function render() {
   lines.forEach((ln, i) => goldText(ln, W / 2, y + i * lh, `700 ${size}px Georgia, serif`, 10));
   const afterTitle = y + (lines.length - 1) * lh;
   // сундук
-  const cw = 560, ch = chest.complete && chest.naturalWidth ? cw * chest.naturalHeight / chest.naturalWidth : 490;
-  const cy = Math.max(afterTitle + 50, 340);
+  const cw = 860, ch = chest.complete && chest.naturalWidth ? cw * chest.naturalHeight / chest.naturalWidth : 560;
+  const cy = Math.max(afterTitle + 40, 330);
   glow(W / 2, cy + ch / 2, 420, done ? "255,230,140" : "255,214,120", done ? .85 : .55);
   if (done) for (let i = 0; i < 14; i++) star(W / 2 + (r() - .5) * 700, cy + r() * ch, 5 + r() * 8, .9);
   if (chest.complete && chest.naturalWidth) ctx.drawImage(chest, W / 2 - cw / 2, cy, cw, ch);
   // число
-  const ny = Math.max(cy + ch + 150, 940);
+  const ny = Math.max(cy + ch + 130, 930);
   goldText(`${opened} / ${target}`, W / 2, ny, "800 150px Cinzel, Georgia, serif", 12);
   // полоса прогресса
   const bx = 130, bw = W - 260, by = ny + 40, bh = 52;
